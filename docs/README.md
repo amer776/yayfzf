@@ -123,6 +123,7 @@ yayfzf
 
 | Option | Description |
 |--------|-------------|
+| `-t`, `--theme` | Select built-in theme |
 | `-k`, `--keybindings` | Show keybindings and exit |
 | `-i`, `--init-config` | Install example configuration file |
 | `-s`, `--show-config` | Show example configuration file content |
