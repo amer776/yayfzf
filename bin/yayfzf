@@ -467,7 +467,7 @@ ${C_BLUE}${C_BOLD}USAGE${C_RESET}
 
 ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
-  ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_PURPLE}[theme]${C_RESET}
+  ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
       ${C_WHITE}Select built-in theme${C_RESET}
 
   ${C_YELLOW}-k${C_RESET}, ${C_YELLOW}--keybindings${C_RESET}
