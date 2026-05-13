@@ -37,7 +37,7 @@ _yayfzf_complete() {
         --init-config
         --show-config
         --theme
-        --theme=
+        --list-themes
         --verbose
         --version
     )
@@ -48,6 +48,7 @@ _yayfzf_complete() {
         -i
         -s
         -t
+        -l
         -v
         -V
     )
@@ -97,7 +98,7 @@ _yayfzf_complete() {
 
     # After any recognized no-argument option, complete nothing.
     case "${prev}" in
-        -h|--help|--help-man|-k|--keybindings|-i|--init-config|-s|--show-config|-v|--verbose|-V|--version)
+        -h|--help|--help-man|-k|--keybindings|-i|--init-config|-s|--show-config|-l|--list-themes|-v|--verbose|-V|--version)
             return 0
             ;;
     esac
