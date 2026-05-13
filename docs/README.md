@@ -173,8 +173,7 @@ yayfzf
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `THEME` | Color theme | `default` *(options: default, light, tokyo-night, neon)* |
-| `SORT_BY` | Package sort order | `popularity` *(options: popularity, votes, last_updated)* |
+| `THEME` | Color theme | `default` *(options: default, light, tokyo-night, neon, catppuccin-mocha, catppuccin-latte, dracula, gruvbox-dark, gruvbox-light, nord, solarized-dark, solarized-light, rose-pine, rose-pine-moon, rose-pine-dawn, onedark, kanagawa)* |
 | `PREVIEW_WINDOW` | fzf preview window layout and size | `right:60%:wrap` |
 | `ENABLE_PREVIEW` | Show preview window | `true` |
 | `LAYOUT` | fzf layout | `reverse` *(options: default, reverse)* |
