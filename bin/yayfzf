@@ -17,7 +17,7 @@ readonly SCRIPT_NAME="${0##*/}"
 readonly SCRIPT_DESCRIPTION="Fullscreen interactive AUR / repo package manager using yay + fzf"
 readonly SCRIPT_AUTHOR="ConnerWill"
 readonly SCRIPT_AUTHOR_URL="https://github.com/ConnerWill"
-readonly VERSION="2.0.15"
+readonly VERSION="2.0.16"
 
 #######################################
 # Config locations (precedence order)
@@ -710,18 +710,18 @@ fi
 
 while [[ $# -gt 0 ]]; do
   case "${1}" in
-    -t|--theme)       THEME="${2}";                               shift  ;;
-    -l|--list-themes) show_themes;                                exit 0 ;;
-    -k|--key*)        show_keybindings;                           exit 0 ;;
-    -i|--init-c*)     CONFIG_INIT=true;                           shift  ;;
-    -s|--show-c*)     show_example_config;                        exit 0 ;;
-    -v|--verb*)       export VERBOSE=true;                        shift  ;;
-    -h)               show_help;                                  exit 0 ;;
-    --help)           show_help_full;                             exit 0 ;;
-    --help-man)       show_help_man;                              exit 0 ;;
-    -V|--vers*)       show_version;                               exit 0 ;;
-    -*)               die "Unknown option: '${1}'. See help for options" ;;
-    *)                SEARCH_QUERY+="${SEARCH_QUERY:+ }${1}";     shift  ;;
+    -t|--them*)       THEME="${2}";                               shift 2 ;;
+    -l|--list-themes) show_themes;                                exit 0  ;;
+    -k|--key*)        show_keybindings;                           exit 0  ;;
+    -i|--init-c*)     CONFIG_INIT=true;                           shift   ;;
+    -s|--show-c*)     show_example_config;                        exit 0  ;;
+    -v|--verb*)       export VERBOSE=true;                        shift   ;;
+    -h)               show_help;                                  exit 0  ;;
+    --help)           show_help_full;                             exit 0  ;;
+    --help-man)       show_help_man;                              exit 0  ;;
+    -V|--vers*)       show_version;                               exit 0  ;;
+    -*)               die "Unknown option: '${1}'. See help for options"  ;;
+    *)                SEARCH_QUERY+="${SEARCH_QUERY:+ }${1}";     shift   ;;
   esac
 done
 
