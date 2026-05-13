@@ -1,32 +1,54 @@
 #compdef yayfzf
 
 _yayfzf() {
-  local -a opts main_actions
+  local -a opts themes
+  local curcontext="${curcontext}" state line
+  local ret=1
 
-  main_actions=(
-    'Install packages:Search and install packages (AUR + repos)'
-    'Remove packages:Search installed packages and remove them'
-    'Update system:Update the whole system (yay -Syu)'
-    'Install config:Install example config file'
-    'Show config:Show example config content'
-    'Help:Show help'
-    'Exit:Quit'
+  typeset -A opt_args
+
+  themes=(
+    default
+    light
+    tokyo-night
+    neon
+    catppuccin-mocha
+    catppuccin-latte
+    dracula
+    gruvbox-dark
+    gruvbox-light
+    nord
+    solarized-dark
+    solarized-light
+    rose-pine
+    rose-pine-moon
+    rose-pine-dawn
+    onedark
+    kanagawa
   )
 
   opts=(
-    '(-h --help)'{-h,--help}'[Show help (short or full)]'
+    '(-h --help)'{-h,--help}'[Show help]'
     '--help-man[Show manpage help]'
     '(-k --keybindings)'{-k,--keybindings}'[Show keybindings]'
     '(-i --init-config)'{-i,--init-config}'[Install example configuration file]'
     '(-s --show-config)'{-s,--show-config}'[Show example configuration file content]'
+    '(-t --theme)'{-t,--theme}'[Select built-in theme]:theme:->themes'
     '(-v --verbose)'{-v,--verbose}'[Show verbose output]'
     '(-V --version)'{-V,--version}'[Show version]'
   )
 
-  # No positional arguments anymore → only options or nothing
   _arguments -C \
     "${opts[@]}" \
-    '*: :( )'   # explicitly say no more arguments after options
+    '*: :( )' && return 0
+
+  case "${state}" in
+    themes)
+      _values 'yayfzf theme' "${themes[@]}" && ret=0
+      ;;
+  esac
+
+  return "${ret}"
 }
 
 _yayfzf "${@}"
