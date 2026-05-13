@@ -470,6 +470,9 @@ ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
   ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
       ${C_WHITE}Select built-in theme${C_RESET}
 
+  ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
+      ${C_WHITE}Show list of built-in themes${C_RESET}
+
   ${C_YELLOW}-k${C_RESET}, ${C_YELLOW}--keybindings${C_RESET}
       ${C_WHITE}Show keybindings${C_RESET}
 
@@ -597,6 +600,18 @@ show_author() {
   printf '%b%s%b %b%s%b\n' "${C_GREEN}" "${SCRIPT_AUTHOR}" "${C_RESET}" "${C_YELLOW}" "${SCRIPT_AUTHOR_URL}" "${C_RESET}"
 }
 
+show_themes() {
+    local theme_name
+
+    printf '%bAvailable themes%b:\n' "${C_GREEN}" "${C_RESET}"
+
+    # Associative arrays do not preserve order, so sort the theme names.
+    while IFS= read -r theme_name; do
+        printf '%b%s%b\n' "${C_YELLOW}" "${theme_name}" "${C_RESET}"
+    done < <(printf '%s\n' "${!BUILTIN_THEMES[@]}" | sort)
+}
+
+
 show_help_man() {
   require_cmd man
   man "${SCRIPT_NAME}"
@@ -695,17 +710,18 @@ fi
 
 while [[ $# -gt 0 ]]; do
   case "${1}" in
-    -t|--theme)     THEME="${2}";                               shift  ;;
-    -k|--key*)      show_keybindings;                           exit 0 ;;
-    -i|--init-c*)   CONFIG_INIT=true;                           shift  ;;
-    -s|--show-c*)   show_example_config;                        exit 0 ;;
-    -v|--verb*)     export VERBOSE=true;                        shift  ;;
-    -h)             show_help;                                  exit 0 ;;
-    --help)         show_help_full;                             exit 0 ;;
-    --help-man)     show_help_man;                              exit 0 ;;
-    -V|--vers*)     show_version;                               exit 0 ;;
-    -*)             die "Unknown option: '${1}'. See help for options" ;;
-    *)              SEARCH_QUERY+="${SEARCH_QUERY:+ }${1}";     shift  ;;
+    -t|--theme)       THEME="${2}";                               shift  ;;
+    -l|--list-themes) show_themes;                                exit 0 ;;
+    -k|--key*)        show_keybindings;                           exit 0 ;;
+    -i|--init-c*)     CONFIG_INIT=true;                           shift  ;;
+    -s|--show-c*)     show_example_config;                        exit 0 ;;
+    -v|--verb*)       export VERBOSE=true;                        shift  ;;
+    -h)               show_help;                                  exit 0 ;;
+    --help)           show_help_full;                             exit 0 ;;
+    --help-man)       show_help_man;                              exit 0 ;;
+    -V|--vers*)       show_version;                               exit 0 ;;
+    -*)               die "Unknown option: '${1}'. See help for options" ;;
+    *)                SEARCH_QUERY+="${SEARCH_QUERY:+ }${1}";     shift  ;;
   esac
 done
 
