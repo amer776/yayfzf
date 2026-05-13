@@ -69,13 +69,13 @@ AUR package [fzf][fzf-url] finder to search, install, remove, and manage package
 
 ## Features
 
-* Interactive menu for Arch Linux package manager
-* Inline package information preview
-* Multi-select support via fzf
-* Toggleable preview window
-* Multiple built-in color themes
-* Configurable layout, borders, and keybindings
-* XDG-compliant configuration file support
+- Interactive menu for Arch Linux package manager
+- Inline package information preview
+- Multi-select support via fzf
+- Toggleable preview window
+- Multiple built-in color themes
+- Configurable layout, borders, and keybindings
+- XDG-compliant configuration file support
 
 ## Requirements
 
@@ -122,8 +122,9 @@ yayfzf
 ### Command Line Options
 
 | Option | Description |
-|--------|-------------|
+| ------ |------------ |
 | `-t`, `--theme` | Select built-in theme |
+| `-l`, `--list-themes` | Show list of built-in themes |
 | `-k`, `--keybindings` | Show keybindings and exit |
 | `-i`, `--init-config` | Install example configuration file |
 | `-s`, `--show-config` | Show example configuration file content |
@@ -136,7 +137,7 @@ yayfzf
 ### Keybindings
 
 | Key | Action |
-|-----|--------|
+| --- | ------ |
 | <kbd>↑</kbd> | Move up |
 | <kbd>↓</kbd> | Move down |
 | <kbd>PGUP</kbd> | Move up one page |
@@ -173,7 +174,7 @@ yayfzf
 ### Configuration Options
 
 | Option | Description | Default |
-|--------|-------------|---------|
+| ------ | ----------- | ------- |
 | `THEME` | Color theme | `default` *(options: default, light, tokyo-night, neon, catppuccin-mocha, catppuccin-latte, dracula, gruvbox-dark, gruvbox-light, nord, solarized-dark, solarized-light, rose-pine, rose-pine-moon, rose-pine-dawn, onedark, kanagawa)* |
 | `PREVIEW_WINDOW` | fzf preview window layout and size | `right:60%:wrap` |
 | `ENABLE_PREVIEW` | Show preview window | `true` |
