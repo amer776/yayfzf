@@ -870,6 +870,7 @@ main_menu() {
     "Update system"    \
     "Install config"   \
     "Show config"      \
+    "List themes"      \
     "Help"             \
     "Exit" |
     fzf "${FZF_OPTS[@]}"
@@ -892,6 +893,7 @@ main() {
       "Update system")    update_system                  ;;
       "Install config")   install_example_config; exit 0 ;;
       "Show config")      show_example_config ;   exit 0 ;;
+      "List themes")      show_themes ;           exit 0 ;;
       "Help")             show_help_full ;        exit 0 ;;
       "Exit"|"" )         exit 0                         ;;
     esac
