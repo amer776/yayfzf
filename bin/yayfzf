@@ -361,7 +361,7 @@ load_config() {
 # Theme resolution
 #######################################
 resolve_theme() {
-  verbose "Loading theme ..."
+  verbose "Loading theme: ${THEME} ..."
   # User-defined colors override everything
   if [[ -n "${FZF_COLORS:-}" ]]; then
     return
@@ -692,6 +692,7 @@ fi
 
 while [[ $# -gt 0 ]]; do
   case "${1}" in
+    -t|--theme)     THEME="${2}";                               shift  ;;
     -k|--key*)      show_keybindings;                           exit 0 ;;
     -i|--init-c*)   CONFIG_INIT=true;                           shift  ;;
     -s|--show-c*)   show_example_config;                        exit 0 ;;
