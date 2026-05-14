@@ -46,6 +46,7 @@ NO_COLOR=${NO_COLOR:-false}
 #######################################
 # Built-in themes
 #######################################
+# You can create custom themes here: https://junegunn.github.io/fzf/color-themes
 declare -A BUILTIN_THEMES
 
 BUILTIN_THEMES[default]="
@@ -532,9 +533,9 @@ ${C_BLUE}${C_BOLD}EXAMPLES${C_RESET}
     ${C_GRAY}\$${C_RESET} ${C_GREEN}${SCRIPT_NAME}${C_RESET}
 
 
-  ${C_WHITE}Start ${SCRIPT_NAME} with an initial search query of ${C_RESET}${C_PURPLE}'rclone'${C_RESET}
+  ${C_WHITE}Start ${SCRIPT_NAME} with an initial search query of ${C_RESET}${C_PURPLE}'fzf'${C_RESET}
 
-    ${C_GRAY}\$${C_RESET} ${C_GREEN}${SCRIPT_NAME}${C_RESET} ${C_PURPLE}'rclone'${C_RESET}
+    ${C_GRAY}\$${C_RESET} ${C_GREEN}${SCRIPT_NAME}${C_RESET} ${C_PURPLE}'fzf'${C_RESET}
 
 
   ${C_WHITE}Install ${SCRIPT_NAME} configuration file${C_RESET}
@@ -968,7 +969,7 @@ main_menu() {
     "Install config"   \
     "Show config"      \
     "List themes"      \
-    "Select theme"   \
+    "Select theme"     \
     "Help"             \
     "Exit" |
     fzf "${FZF_OPTS[@]}"

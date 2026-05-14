@@ -317,6 +317,7 @@ NO_COLOR=false
 ## See Also
 
 - [fzf][fzf-url]
+- [fzf Color Themes][fzf-themes-url]
 - [yay][yay-url]
 - [rclonefzf][rclonefzf-url]
 
@@ -398,6 +399,7 @@ If you experience bugs or have suggestions, open an issue.
 [wiki-screenshots-url]: https://github.com/ConnerWill/yayfzf/wiki/Screenshots
 
 [fzf-url]: https://github.com/junegunn/fzf
+[fzf-themes-url]: https://junegunn.github.io/fzf/color-themes
 [yay-url]: https://github.com/Jguer/yay
 [yayfzf-url]: https://github.com/ConnerWill/yayfzf
 [yayfzf-source]: https://github.com/ConnerWill/yayfzf/blob/main/bin/yayfzf
