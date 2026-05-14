@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="720" height="480" src="/docs/images/demo-screenshot.png">
+<img width="720" height="480" src="/docs/images/demo-screenshot-3.png">
 
 # yayfzf
 
@@ -63,6 +63,7 @@ AUR package [fzf][fzf-url] finder to search, install, remove, and manage package
 
 | ![demo screenshot](/docs/images/demo-screenshot.png) | ![demo screenshot 2](/docs/images/demo-screenshot-2.png) |
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| ![demo screenshot 3](/docs/images/demo-screenshot-3.png) | ![demo screenshot 4](/docs/images/demo-screenshot-4.png) |
 
 </div>
 
@@ -175,18 +176,18 @@ yayfzf
 
 ### Configuration Options
 
-| Option | Description | Default |
-| ------ | ----------- | ------- |
-| `THEME` | Color theme | `default` *(options: `default`, `light`, `tokyo-night`, `neon`, `catppuccin-mocha`, `catppuccin-latte`, `dracula`, `gruvbox-dark`, `gruvbox-light`, `nord`, `solarized-dark`, `solarized-light`, `rose-pine`, `rose-pine-moon`, `rose-pine-dawn`, `onedark`, `kanagawa`)* |
-| `PREVIEW_WINDOW` | fzf preview window layout and size | `right:60%:wrap` |
-| `ENABLE_PREVIEW` | Show preview window | `true` |
-| `SORT_BY` | Package sort order | `popularity` *(options: `popularity`, `votes`, `last_updated`)* |
-| `LAYOUT` | fzf layout | `reverse` *(options: `default`, `reverse`)* |
-| `BORDER` | fzf border style | `rounded` *(options: `default`, `rounded`)* |
-| `PROMPT` | Prompt string for fzf | `"yayfzf> "` |
-| `VERBOSE` | Enable verbose logging | `false` |
-| `YAYFZF_PAGER` | Pager for help/config/keybindings | `${PAGER:-less}` |
-| `CTRL_C_CLOSE` | Close yayfzf with Ctrl-C | `true` |
+| Option | Description | Default | Options |
+| ------ | ----------- | ------- | ------- |
+| `THEME` | Color theme | `default` | `default`, `light`, `tokyo-night`, `neon`, `catppuccin-mocha`, `catppuccin-latte`, `dracula`, `gruvbox-dark`, `gruvbox-light`, `nord`, `solarized-dark`, `solarized-light`, `rose-pine`, `rose-pine-moon`, `rose-pine-dawn`, `onedark`, `kanagawa` |
+| `PREVIEW_WINDOW` | fzf preview window layout and size | `right:60%:wrap` | |
+| `ENABLE_PREVIEW` | Show preview window | `true` | `true`, `false` |
+| `SORT_BY` | Package sort order | `popularity` | `popularity`, `votes`, `last_updated` |
+| `LAYOUT` | fzf layout | `reverse` | `default`, `reverse` |
+| `BORDER` | fzf border style | `rounded` | `default`, `rounded` |
+| `PROMPT` | Prompt string for fzf | `"yayfzf> "` | |
+| `VERBOSE` | Enable verbose logging | `false` | `true`, `false` |
+| `YAYFZF_PAGER` | Pager for help/config/keybindings | `${PAGER:-less}` | |
+| `CTRL_C_CLOSE` | Close yayfzf with Ctrl-C | `true` | `true`, `false` |
 
 ## See Also
 
