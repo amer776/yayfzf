@@ -467,41 +467,55 @@ ${C_BLUE}${C_BOLD}USAGE${C_RESET}
 
 ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
-  ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
-      ${C_WHITE}Set built-in theme${C_RESET}
+  ${C_CYAN}PACKAGE SEARCH${C_RESET}
 
-  ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
-      ${C_WHITE}Show list of built-in themes${C_RESET}
+    ${C_YELLOW}--sort-by${C_RESET} ${C_ITALIC}${C_PURPLE}[sort option]${C_RESET}
+        ${C_WHITE}Set package sort order${C_RESET}
 
-  ${C_YELLOW}-k${C_RESET}, ${C_YELLOW}--keybindings${C_RESET}
-      ${C_WHITE}Show keybindings${C_RESET}
+    ${C_YELLOW}--no-preview${C_RESET}
+        ${C_WHITE}Disable package preview window${C_RESET}
 
-  ${C_YELLOW}-i${C_RESET}, ${C_YELLOW}--init-config${C_RESET}
-      ${C_WHITE}Install example configuration file${C_RESET}
 
-  ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
-      ${C_WHITE}Show example configuration file content${C_RESET}
+  ${C_CYAN}THEMES${C_RESET}
 
-  ${C_YELLOW}--sort-by${C_RESET} ${C_ITALIC}${C_PURPLE}[sort option]${C_RESET}
-      ${C_WHITE}Set package sort order${C_RESET}
+    ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
+        ${C_WHITE}Set built-in theme${C_RESET}
 
-  ${C_YELLOW}--no-preview${C_RESET}
-      ${C_WHITE}Disable preview window${C_RESET}
+    ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
+        ${C_WHITE}Show list of built-in themes${C_RESET}
 
-  ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
-      ${C_WHITE}Show verbose output${C_RESET}
+    ${C_YELLOW}--preview-themes${C_RESET}
+        ${C_WHITE}Interactively preview and select a built-in theme${C_RESET}
 
-  ${C_YELLOW}-h${C_RESET}
-      ${C_WHITE}Show help${C_RESET}
 
-  ${C_YELLOW}--help${C_RESET}
-      ${C_WHITE}Show full help${C_RESET}
+  ${C_CYAN}CONFIGURATION${C_RESET}
 
-  ${C_YELLOW}--help-man${C_RESET}
-      ${C_WHITE}Show man page${C_RESET}
+    ${C_YELLOW}-i${C_RESET}, ${C_YELLOW}--init-config${C_RESET}
+        ${C_WHITE}Install example configuration file${C_RESET}
 
-  ${C_YELLOW}-V${C_RESET}, ${C_YELLOW}--version${C_RESET}
-      ${C_WHITE}Show version${C_RESET}
+    ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
+        ${C_WHITE}Show example configuration file content${C_RESET}
+
+
+  ${C_CYAN}INFORMATION${C_RESET}
+
+    ${C_YELLOW}-k${C_RESET}, ${C_YELLOW}--keybindings${C_RESET}
+        ${C_WHITE}Show keybindings${C_RESET}
+
+    ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
+        ${C_WHITE}Show verbose output${C_RESET}
+
+    ${C_YELLOW}-h${C_RESET}
+        ${C_WHITE}Show help${C_RESET}
+
+    ${C_YELLOW}--help${C_RESET}
+        ${C_WHITE}Show full help${C_RESET}
+
+    ${C_YELLOW}--help-man${C_RESET}
+        ${C_WHITE}Show man page${C_RESET}
+
+    ${C_YELLOW}-V${C_RESET}, ${C_YELLOW}--version${C_RESET}
+        ${C_WHITE}Show version${C_RESET}
 
 
 HELPMENU
@@ -615,6 +629,31 @@ show_themes() {
     done < <(printf '%s\n' "${!BUILTIN_THEMES[@]}" | sort)
 }
 
+preview_themes() {
+  local selected_theme
+
+  require_cmd fzf
+
+  selected_theme="$(
+    show_themes |
+      fzf \
+        --ansi \
+        --prompt='theme> ' \
+        --border="${BORDER}" \
+        --layout="${LAYOUT}" \
+        --cycle \
+        --preview-window='right:50%:wrap' \
+        --preview='
+          printf "Theme: %s\n\n" "{}"
+          printf "Press ENTER to launch yayfzf with this theme.\n"
+          printf "Press ESC to cancel.\n"
+        '
+  )"
+
+  [[ -n "${selected_theme}" ]] || exit 0
+
+  exec "${0}" --theme "${selected_theme}"
+}
 
 show_help_man() {
   require_cmd man
@@ -741,6 +780,10 @@ parse_args() {
       --no-preview)
         ENABLE_PREVIEW=false
         shift
+        ;;
+      --preview-themes)
+        preview_themes
+        exit 0
         ;;
       -v|--verbose)
         export VERBOSE=true
@@ -925,6 +968,7 @@ main_menu() {
     "Install config"   \
     "Show config"      \
     "List themes"      \
+    "Select theme"   \
     "Help"             \
     "Exit" |
     fzf "${FZF_OPTS[@]}"
@@ -948,6 +992,7 @@ main() {
       "Install config")   install_example_config; exit 0 ;;
       "Show config")      show_example_config ;   exit 0 ;;
       "List themes")      show_themes ;           exit 0 ;;
+      "Select theme")     preview_themes;         exit 0 ;;
       "Help")             show_help_full ;        exit 0 ;;
       "Exit"|"" )         exit 0                         ;;
     esac
