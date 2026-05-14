@@ -56,6 +56,7 @@ _yayfzf() {
     '--sort-by[Package sort order]:sort-by:->sort_by_options'
     '--no-preview[Disable preview window]'
     '(-t --theme)'{-t,--theme}'[Select built-in theme]:theme:->theme_options'
+    '(--preview-themes[Interactively preview and select a built-in theme]'
     '(-l --list-themes)'{-l,--list-themes}'[Show list of built-in themes]'
     '(-v --verbose)'{-v,--verbose}'[Show verbose output]'
     '(-V --version)'{-V,--version}'[Show version]'
