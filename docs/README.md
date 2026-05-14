@@ -312,6 +312,22 @@ CTRL_C_CLOSE=true
 
 # Disable color output
 NO_COLOR=false
+
+# Example of custom user theme (Replace 'custom' with theme name)
+BUILTIN_THEMES[custom]="
+  fg:#c0caf5
+  bg:#1a1b26
+  hl:#7aa2f7
+  fg+:#c0caf5
+  bg+:#24283b
+  hl+:#7dcfff
+  info:#7aa2f7
+  prompt:#7dcfff
+  pointer:#7dcfff
+  marker:#9ece6a
+  spinner:#9ece6a
+  header:#9ece6a
+"
 ```
 
 ## See Also
