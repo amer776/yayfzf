@@ -468,7 +468,7 @@ ${C_BLUE}${C_BOLD}USAGE${C_RESET}
 ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
   ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
-      ${C_WHITE}Select built-in theme${C_RESET}
+      ${C_WHITE}Set built-in theme${C_RESET}
 
   ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
       ${C_WHITE}Show list of built-in themes${C_RESET}
@@ -481,6 +481,9 @@ ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
   ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
       ${C_WHITE}Show example configuration file content${C_RESET}
+
+  ${C_YELLOW}--sort-by${C_RESET}
+      ${C_WHITE}Set package sort order${C_RESET}
 
   ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
       ${C_WHITE}Show verbose output${C_RESET}
