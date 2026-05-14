@@ -2,30 +2,66 @@
 .TH yayfzf 1 "2026-05-14" "2.0.18" "yayfzf manual"
 
 .SH NAME
-yayfzf \- interactively search, install, and remove AUR packages using fzf
-
+yayfzf \- fullscreen interactive AUR and repo package manager using yay and fzf
 
 .SH SYNOPSIS
-.B yayfzf [\fIOPTIONS\fR] [\fISEARCH QUERY\fR]
-
+.B yayfzf
+.RI [ OPTIONS ]
+.RI [ SEARCH\ QUERY ]
 
 .SH DESCRIPTION
-Search, install, and remove packages from the AUR interactively with fzf.
+.B yayfzf
+is a fullscreen interactive package manager for Arch Linux systems. It uses
+.BR yay (8)
+for package operations and
+.BR fzf (1)
+for interactive package search, selection, installation, removal, and system updates.
 
+When started without a search query,
+.B yayfzf
+opens the main menu. When a search query is provided, it is used as the initial package search query.
 
 .SH OPTIONS
 
+.SS Package Search
+
 .TP
-.B \-t, \-\-theme [theme]
-Set built-in theme
+.BI "\-\-sort\-by " "sort option"
+Set the package search sort order.
+
+Supported values:
+.RS
+.IP \(bu 2
+.B popularity
+.IP \(bu 2
+.B votes
+.IP \(bu 2
+.B last_updated
+.RE
+
+.TP
+.B \-\-no\-preview
+Disable the package information preview window.
+
+.SS Themes
+
+.TP
+.BI "\-t, \-\-theme " theme
+Set the built-in fzf color theme.
 
 .TP
 .B \-l, \-\-list\-themes
-Show list of built-in themes
+Show the list of built-in themes and exit.
 
 .TP
-.B \-k, \-\-keybindings
-Show the list of available keybindings and exit.
+.B \-\-preview\-themes
+Interactively preview and select a built-in theme.
+
+After selecting a theme,
+.B yayfzf
+launches with the selected theme. When that themed session exits, the theme selector is shown again.
+
+.SS Configuration
 
 .TP
 .B \-i, \-\-init\-config
@@ -33,19 +69,19 @@ Install an example configuration file to the XDG config directory and exit.
 
 .TP
 .B \-s, \-\-show\-config
-Print the example configuration file to stdout and exit.
+Show the active example configuration file content and exit.
+
+If a user configuration file exists, it is shown. Otherwise, the built-in example configuration is printed.
+
+.SS Information
 
 .TP
-.B \-\-sort\-order
-Set package sort order
-
-.TP
-.B \-\-no\-preview
-Disable preview window
+.B \-k, \-\-keybindings
+Show the list of available keybindings and exit.
 
 .TP
 .B \-v, \-\-verbose
-Show verbose output
+Show verbose output.
 
 .TP
 .B \-h
@@ -53,63 +89,98 @@ Show the short help text and exit.
 
 .TP
 .B \-\-help
-Show full help, including keybindings and config file locations, and exit.
+Show full help, including examples, keybindings, config file locations, version, and author information, then exit.
 
 .TP
 .B \-\-help\-man
-Show manpage help and exit.
+Show the man page and exit.
 
 .TP
 .B \-V, \-\-version
-Show the yayfzf version and exit.
+Show the
+.B yayfzf
+version and exit.
 
 .SH EXAMPLES
-.TP
-.B $ yayfzf
-Run yayfzf with no search query
 
 .TP
-.B $ yayfzf fzf
-Search for 'fzf' with yayfzf
+.B yayfzf
+Open the main menu.
 
 .TP
-.B $ yayfzf \-h
-Show the help menu
+.B yayfzf fzf
+Start
+.B yayfzf
+with an initial search query of
+.BR fzf .
 
+.TP
+.B yayfzf \-\-sort\-by votes
+Search packages sorted by votes.
+
+.TP
+.B yayfzf \-\-theme dracula
+Start
+.B yayfzf
+using the
+.B dracula
+theme.
+
+.TP
+.B yayfzf \-\-list\-themes
+Show all built-in themes.
+
+.TP
+.B yayfzf \-\-preview\-themes
+Open the interactive theme selector.
+
+.TP
+.B yayfzf \-\-no\-preview
+Start
+.B yayfzf
+with the package preview window disabled.
+
+.TP
+.B yayfzf \-\-init\-config
+Install an example configuration file.
+
+.TP
+.B yayfzf \-h
+Show the short help menu.
 
 .SH KEYBINDINGS
 
-.TP
-.B ↑
-Move up
+.SS Navigation
 
 .TP
-.B ↓
-Move down
+.B Up / Down
+Move the cursor up or down.
 
 .TP
 .B PGUP
-Move up one page
+Move up one page.
 
 .TP
 .B PGDN
-Move down one page
+Move down one page.
 
 .TP
 .B HOME
-Move to first
+Move to the first item.
 
 .TP
 .B END
-Move to last
+Move to the last item.
+
+.SS Selection
 
 .TP
 .B TAB
-Select item.
+Select the current item.
 
 .TP
 .B Shift\-TAB
-Unselect item.
+Unselect the current item.
 
 .TP
 .B Ctrl\-a
@@ -119,92 +190,263 @@ Select all items.
 .B Ctrl\-d
 Deselect all selected items.
 
+.SS Actions
+
 .TP
 .B ENTER
-Perform action on the current selection.
+Perform the default action for the current selection.
 
 .TP
 .B Ctrl\-i
-Install selected packages
+Install the selected package or packages.
 
 .TP
 .B Ctrl\-r
-Uninstall package
+Remove the selected package.
 
 .TP
 .B Ctrl\-u
-Update all packages
+Update all packages.
+
+.SS Query
 
 .TP
 .B Ctrl\-l
-Clear the current search query and screen.
+Clear the current query, clear the screen, and clear the current selection.
 
 .TP
 .B Ctrl\-Backspace
-Clear the current search query.
+Clear the current query.
+
+.SS Layout
 
 .TP
 .B Ctrl\-/
-Cycle fzf layout and preview window position.
+Cycle the preview window position and size.
 
 .TP
 .B Ctrl\-v
 Toggle the preview window.
 
+.SS Help
+
 .TP
 .B ?
-Show keybindings.
+Show keybindings in the preview window.
+
+.SS Exit
 
 .TP
 .B Ctrl\-c
-Exit yayfzf.
+Exit
+.BR yayfzf .
 
 .TP
 .B Ctrl\-w
-Exit yayfzf.
+Exit
+.BR yayfzf .
 
 .TP
 .B ESC
-Exit yayfzf.
+Exit
+.BR yayfzf .
 
+.SH CONFIGURATION
+
+.B yayfzf
+loads the first configuration file found from the following locations, in order:
+
+.RS
+.IP \(bu 2
+.BR "$XDG_CONFIG_HOME/yayfzf/yayfzf.conf"
+.IP \(bu 2
+.BR "$HOME/.config/yayfzf/yayfzf.conf"
+.IP \(bu 2
+.BR "$HOME/.yayfzf.conf"
+.RE
+
+The configuration file is a shell-style file that can override default settings.
 
 .SH ENVIRONMENT
-.TP
-.B YAYFZF_PREVIEW_WINDOW
-Controls the layout and size of the fzf preview window.
 
-The value is passed directly to fzf’s
-.BR --preview-window
+.TP
+.B THEME
+Default built-in theme.
+
+Default:
+.RS
+.B default
+.RE
+
+.TP
+.B SORT_BY
+Default package search sort order.
+
+Supported values:
+.RS
+.IP \(bu 2
+.B popularity
+.IP \(bu 2
+.B votes
+.IP \(bu 2
+.B last_updated
+.RE
+
+Default:
+.RS
+.B popularity
+.RE
+
+.TP
+.B PREVIEW_WINDOW
+Controls the layout and size of the fzf package preview window.
+
+The value is passed directly to fzf's
+.BR \-\-preview\-window
 option.
 
 Default:
 .RS
-.B bottom,43%,border-double
+.B right:60%:wrap
+.RE
+
+.TP
+.B LAYOUT
+Controls the fzf layout.
+
+Default:
+.RS
+.B reverse
+.RE
+
+.TP
+.B BORDER
+Controls the fzf border style.
+
+Default:
+.RS
+.B rounded
+.RE
+
+.TP
+.B YAYFZF_PROMPT
+Controls the fzf prompt text.
+
+Default:
+.RS
+.B yayfzf>
+.RE
+
+.TP
+.B ENABLE_PREVIEW
+Enable or disable the package information preview window.
+
+Set to
+.B false
+to disable the package preview window.
+
+Default:
+.RS
+.B true
+.RE
+
+.TP
+.B VERBOSE
+Enable verbose output.
+
+Set to
+.B true
+to show verbose messages.
+
+Default:
+.RS
+.B false
+.RE
+
+.TP
+.B YAYFZF_PAGER
+Pager used when showing configuration or other long-form output.
+
+Default:
+.RS
+.BR "$PAGER" ,
+or
+.B less
+when
+.B PAGER
+is not set.
+.RE
+
+.TP
+.B CTRL_C_CLOSE
+Controls whether an empty fzf selection exits
+.BR yayfzf .
+
+Default:
+.RS
+.B true
 .RE
 
 .TP
 .B NO_COLOR
-Disable all ANSI color output.
+Disable ANSI color output.
 
-When set, yayfzf disables:
+When set to
+.BR true ,
+.B yayfzf
+disables colored output in messages and disables yay color output.
+
+.SH FILES
+
+.TP
+.B $XDG_CONFIG_HOME/yayfzf/yayfzf.conf
+Primary XDG configuration file.
+
+.TP
+.B $HOME/.config/yayfzf/yayfzf.conf
+Default configuration path when
+.B XDG_CONFIG_HOME
+is not set.
+
+.TP
+.B $HOME/.yayfzf.conf
+Legacy fallback configuration file.
+
+.SH EXIT STATUS
+
+.TP
+.B 0
+Command completed successfully.
+
+.TP
+.B non-zero
+An error occurred, a dependency was missing, or a package operation failed.
+
+.SH DEPENDENCIES
+
+.B yayfzf
+requires:
+
 .RS
 .IP \(bu 2
-fzf color themes
+.B bash
 .IP \(bu 2
-ANSI color output in messages
-
-.PP
-This follows the
-.B NO_COLOR
-convention used by many CLI tools.
+.B yay
+.IP \(bu 2
+.B fzf
+.IP \(bu 2
+.B awk
+.IP \(bu 2
+.B sed
+.IP \(bu 2
+.B tr
+.IP \(bu 2
+.B tput
 .RE
 
-
 .SH SEE ALSO
-.BR fzf (1)
-.BR yay (1)
-.BR rclonefzf (1)
-
+.BR fzf (1),
+.BR yay (8)
 
 .SH AUTHOR
 Conner Will <conner.will@connerwill.com>
