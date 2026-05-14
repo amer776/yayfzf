@@ -17,7 +17,7 @@ readonly SCRIPT_NAME="${0##*/}"
 readonly SCRIPT_DESCRIPTION="Fullscreen interactive AUR / repo package manager using yay + fzf"
 readonly SCRIPT_AUTHOR="ConnerWill"
 readonly SCRIPT_AUTHOR_URL="https://github.com/ConnerWill"
-readonly VERSION="2.0.18"
+readonly VERSION="2.0.19"
 
 #######################################
 # Config locations (precedence order)
@@ -46,6 +46,7 @@ NO_COLOR=${NO_COLOR:-false}
 #######################################
 # Built-in themes
 #######################################
+# You can create custom themes here: https://junegunn.github.io/fzf/color-themes
 declare -A BUILTIN_THEMES
 
 BUILTIN_THEMES[default]="
@@ -303,6 +304,272 @@ spinner:#7aa89f
 header:#98bb6c
 "
 
+BUILTIN_THEMES[github-dark]="
+fg:#c9d1d9
+bg:#0d1117
+hl:#79c0ff
+fg+:#c9d1d9
+bg+:#161b22
+hl+:#a5d6ff
+info:#8b949e
+prompt:#58a6ff
+pointer:#f85149
+marker:#ff7b72
+spinner:#3fb950
+header:#79c0ff
+border:#30363d
+label:#8b949e
+gutter:#161b22
+footer:#8b949e
+"
+
+BUILTIN_THEMES[github-light]="
+fg:#24292f
+bg:#ffffff
+hl:#0969da
+fg+:#24292f
+bg+:#f6f8fa
+hl+:#0969da
+info:#57606a
+prompt:#0969da
+pointer:#cf222e
+marker:#2da44e
+spinner:#2da44e
+header:#0969da
+border:#d0d7de
+label:#57606a
+gutter:#f6f8fa
+footer:#57606a
+"
+
+BUILTIN_THEMES[monokai]="
+fg:#f8f8f2
+bg:#272822
+hl:#a6e22e
+fg+:#f8f8f2
+bg+:#3e3d32
+hl+:#a6e22e
+info:#66d9ef
+prompt:#fd971f
+pointer:#f92672
+marker:#a6e22e
+spinner:#66d9ef
+header:#e6db74
+border:#75715e
+label:#ae81ff
+gutter:#3e3d32
+footer:#75715e
+"
+
+BUILTIN_THEMES[material-dark]="
+fg:#eeffff
+bg:#263238
+hl:#82aaff
+fg+:#ffffff
+bg+:#37474f
+hl+:#c792ea
+info:#89ddff
+prompt:#82aaff
+pointer:#ff5370
+marker:#c3e88d
+spinner:#89ddff
+header:#c3e88d
+border:#546e7a
+label:#b0bec5
+gutter:#37474f
+footer:#b0bec5
+"
+
+BUILTIN_THEMES[material-light]="
+fg:#263238
+bg:#fafafa
+hl:#1976d2
+fg+:#263238
+bg+:#eeeeee
+hl+:#7b1fa2
+info:#546e7a
+prompt:#1976d2
+pointer:#d32f2f
+marker:#388e3c
+spinner:#0097a7
+header:#388e3c
+border:#cfd8dc
+label:#546e7a
+gutter:#eeeeee
+footer:#546e7a
+"
+
+BUILTIN_THEMES[ayu-dark]="
+fg:#b3b1ad
+bg:#0b0e14
+hl:#ffb454
+fg+:#e6e1cf
+bg+:#1f2430
+hl+:#ffd580
+info:#59c2ff
+prompt:#ffb454
+pointer:#ff8f40
+marker:#aad94c
+spinner:#95e6cb
+header:#aad94c
+border:#3d424d
+label:#b3b1ad
+gutter:#11151c
+footer:#b3b1ad
+"
+
+BUILTIN_THEMES[everforest-dark]="
+fg:#d3c6aa
+bg:#2b3339
+hl:#a7c080
+fg+:#d3c6aa
+bg+:#323c41
+hl+:#dbbc7f
+info:#7fbbb3
+prompt:#a7c080
+pointer:#e67e80
+marker:#a7c080
+spinner:#83c092
+header:#dbbc7f
+border:#4b565c
+label:#859289
+gutter:#323c41
+footer:#859289
+"
+
+BUILTIN_THEMES[everforest-light]="
+fg:#5c6a72
+bg:#fdf6e3
+hl:#8da101
+fg+:#5c6a72
+bg+:#f4f0d9
+hl+:#dfa000
+info:#3a94c5
+prompt:#8da101
+pointer:#f85552
+marker:#8da101
+spinner:#35a77c
+header:#dfa000
+border:#dfddc8
+label:#829181
+gutter:#f4f0d9
+footer:#829181
+"
+
+BUILTIN_THEMES[iceberg]="
+fg:#c6c8d1
+bg:#161821
+hl:#84a0c6
+fg+:#d2d4de
+bg+:#1e2132
+hl+:#89b8c2
+info:#84a0c6
+prompt:#a093c7
+pointer:#e27878
+marker:#b4be82
+spinner:#89b8c2
+header:#b4be82
+border:#3e445e
+label:#6b7089
+gutter:#1e2132
+footer:#6b7089
+"
+
+BUILTIN_THEMES[papercolor-light]="
+fg:#444444
+bg:#eeeeee
+hl:#0087af
+fg+:#444444
+bg+:#d7d7d7
+hl+:#005f87
+info:#5f8700
+prompt:#0087af
+pointer:#af0000
+marker:#008700
+spinner:#5f8700
+header:#8700af
+border:#bcbcbc
+label:#5f5f5f
+gutter:#e4e4e4
+footer:#5f5f5f
+"
+
+BUILTIN_THEMES[papercolor-dark]="
+fg:#d0d0d0
+bg:#1c1c1c
+hl:#5fafd7
+fg+:#ffffff
+bg+:#303030
+hl+:#87d7ff
+info:#afd700
+prompt:#5fafd7
+pointer:#ff5f5f
+marker:#afd700
+spinner:#87d7ff
+header:#d7af5f
+border:#585858
+label:#a8a8a8
+gutter:#262626
+footer:#a8a8a8
+"
+
+BUILTIN_THEMES[doom-one]="
+fg:#bbc2cf
+bg:#282c34
+hl:#51afef
+fg+:#ffffff
+bg+:#3f444a
+hl+:#5cEfFF
+info:#da8548
+prompt:#c678dd
+pointer:#ff6c6b
+marker:#98be65
+spinner:#46d9ff
+header:#98be65
+border:#5b6268
+label:#bbc2cf
+gutter:#21242b
+footer:#bbc2cf
+"
+
+BUILTIN_THEMES[nightfox]="
+fg:#cdcecf
+bg:#192330
+hl:#81b29a
+fg+:#cdcecf
+bg+:#29394f
+hl+:#dbc074
+info:#719cd6
+prompt:#81b29a
+pointer:#c94f6d
+marker:#81b29a
+spinner:#63cdcf
+header:#dbc074
+border:#39506d
+label:#aeafb0
+gutter:#212e3f
+footer:#aeafb0
+"
+
+BUILTIN_THEMES[carbonfox]="
+fg:#f2f4f8
+bg:#161616
+hl:#78a9ff
+fg+:#ffffff
+bg+:#262626
+hl+:#be95ff
+info:#33b1ff
+prompt:#78a9ff
+pointer:#ee5396
+marker:#42be65
+spinner:#3ddbd9
+header:#42be65
+border:#393939
+label:#dde1e6
+gutter:#262626
+footer:#dde1e6
+"
+
 
 #######################################
 # Text colors
@@ -467,41 +734,55 @@ ${C_BLUE}${C_BOLD}USAGE${C_RESET}
 
 ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
-  ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
-      ${C_WHITE}Set built-in theme${C_RESET}
+  ${C_CYAN}PACKAGE SEARCH${C_RESET}
 
-  ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
-      ${C_WHITE}Show list of built-in themes${C_RESET}
+    ${C_YELLOW}--sort-by${C_RESET} ${C_ITALIC}${C_PURPLE}[sort option]${C_RESET}
+        ${C_WHITE}Set package sort order${C_RESET}
 
-  ${C_YELLOW}-k${C_RESET}, ${C_YELLOW}--keybindings${C_RESET}
-      ${C_WHITE}Show keybindings${C_RESET}
+    ${C_YELLOW}--no-preview${C_RESET}
+        ${C_WHITE}Disable package preview window${C_RESET}
 
-  ${C_YELLOW}-i${C_RESET}, ${C_YELLOW}--init-config${C_RESET}
-      ${C_WHITE}Install example configuration file${C_RESET}
 
-  ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
-      ${C_WHITE}Show example configuration file content${C_RESET}
+  ${C_CYAN}THEMES${C_RESET}
 
-  ${C_YELLOW}--sort-by${C_RESET} ${C_ITALIC}${C_PURPLE}[sort option]${C_RESET}
-      ${C_WHITE}Set package sort order${C_RESET}
+    ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
+        ${C_WHITE}Set built-in theme${C_RESET}
 
-  ${C_YELLOW}--no-preview${C_RESET}
-      ${C_WHITE}Disable preview window${C_RESET}
+    ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
+        ${C_WHITE}Show list of built-in themes${C_RESET}
 
-  ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
-      ${C_WHITE}Show verbose output${C_RESET}
+    ${C_YELLOW}--preview-themes${C_RESET}
+        ${C_WHITE}Interactively preview and select a built-in theme${C_RESET}
 
-  ${C_YELLOW}-h${C_RESET}
-      ${C_WHITE}Show help${C_RESET}
 
-  ${C_YELLOW}--help${C_RESET}
-      ${C_WHITE}Show full help${C_RESET}
+  ${C_CYAN}CONFIGURATION${C_RESET}
 
-  ${C_YELLOW}--help-man${C_RESET}
-      ${C_WHITE}Show man page${C_RESET}
+    ${C_YELLOW}-i${C_RESET}, ${C_YELLOW}--init-config${C_RESET}
+        ${C_WHITE}Install example configuration file${C_RESET}
 
-  ${C_YELLOW}-V${C_RESET}, ${C_YELLOW}--version${C_RESET}
-      ${C_WHITE}Show version${C_RESET}
+    ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
+        ${C_WHITE}Show example configuration file content${C_RESET}
+
+
+  ${C_CYAN}INFORMATION${C_RESET}
+
+    ${C_YELLOW}-k${C_RESET}, ${C_YELLOW}--keybindings${C_RESET}
+        ${C_WHITE}Show keybindings${C_RESET}
+
+    ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
+        ${C_WHITE}Show verbose output${C_RESET}
+
+    ${C_YELLOW}-h${C_RESET}
+        ${C_WHITE}Show help${C_RESET}
+
+    ${C_YELLOW}--help${C_RESET}
+        ${C_WHITE}Show full help${C_RESET}
+
+    ${C_YELLOW}--help-man${C_RESET}
+        ${C_WHITE}Show man page${C_RESET}
+
+    ${C_YELLOW}-V${C_RESET}, ${C_YELLOW}--version${C_RESET}
+        ${C_WHITE}Show version${C_RESET}
 
 
 HELPMENU
@@ -518,9 +799,9 @@ ${C_BLUE}${C_BOLD}EXAMPLES${C_RESET}
     ${C_GRAY}\$${C_RESET} ${C_GREEN}${SCRIPT_NAME}${C_RESET}
 
 
-  ${C_WHITE}Start ${SCRIPT_NAME} with an initial search query of ${C_RESET}${C_PURPLE}'rclone'${C_RESET}
+  ${C_WHITE}Start ${SCRIPT_NAME} with an initial search query of ${C_RESET}${C_PURPLE}'fzf'${C_RESET}
 
-    ${C_GRAY}\$${C_RESET} ${C_GREEN}${SCRIPT_NAME}${C_RESET} ${C_PURPLE}'rclone'${C_RESET}
+    ${C_GRAY}\$${C_RESET} ${C_GREEN}${SCRIPT_NAME}${C_RESET} ${C_PURPLE}'fzf'${C_RESET}
 
 
   ${C_WHITE}Install ${SCRIPT_NAME} configuration file${C_RESET}
@@ -609,14 +890,38 @@ show_author() {
 show_themes() {
     local theme_name
 
-    printf '%bAvailable themes%b:\n' "${C_GREEN}" "${C_RESET}"
-
     # Associative arrays do not preserve order, so sort the theme names.
     while IFS= read -r theme_name; do
-        printf '%b%s%b\n' "${C_YELLOW}" "${theme_name}" "${C_RESET}"
+        printf '%s\n' "${theme_name}"
     done < <(printf '%s\n' "${!BUILTIN_THEMES[@]}" | sort)
 }
 
+preview_themes() {
+  local selected_theme
+
+  require_cmd fzf
+
+  selected_theme="$(
+    show_themes |
+      fzf \
+        --ansi \
+        --prompt='theme> ' \
+        --border="${BORDER}" \
+        --layout="${LAYOUT}" \
+        --cycle \
+        --style=full \
+        --preview-window='up:10%:wrap' \
+        --preview='
+          printf "Theme: %s\n\n" "{}"
+          printf "Press ENTER to launch yayfzf with this theme.\n"
+          printf "Press ESC to cancel.\n"
+        '
+  )"
+
+  [[ -n "${selected_theme}" ]] || exit 0
+
+  exec "${0}" --theme "${selected_theme}"
+}
 
 show_help_man() {
   require_cmd man
@@ -643,7 +948,12 @@ example_config() {
 # yayfzf configuration file (example)
 # Override defaults here
 
-# Theme: default, light, tokyo-night, neon, catppuccin-mocha, catppuccin-latte, dracula, gruvbox-dark, gruvbox-light, nord, solarized-dark, solarized-light, rose-pine, rose-pine-moon, rose-pine-dawn, onedark, kanagawa
+# Theme
+# Show available themes:
+#   yayfzf --list-themes
+#
+# Interactively select a theme:
+#   yayfzf --preview-themes
 THEME="${THEME:-default}"
 
 # Package sort order: popularity, votes, last_updated
@@ -743,6 +1053,10 @@ parse_args() {
       --no-preview)
         ENABLE_PREVIEW=false
         shift
+        ;;
+      --preview-themes)
+        preview_themes
+        exit 0
         ;;
       -v|--verbose)
         export VERBOSE=true
@@ -927,6 +1241,7 @@ main_menu() {
     "Install config"   \
     "Show config"      \
     "List themes"      \
+    "Select theme"     \
     "Help"             \
     "Exit" |
     fzf "${FZF_OPTS[@]}"
@@ -950,6 +1265,7 @@ main() {
       "Install config")   install_example_config; exit 0 ;;
       "Show config")      show_example_config ;   exit 0 ;;
       "List themes")      show_themes ;           exit 0 ;;
+      "Select theme")     preview_themes;         exit 0 ;;
       "Help")             show_help_full ;        exit 0 ;;
       "Exit"|"" )         exit 0                         ;;
     esac
