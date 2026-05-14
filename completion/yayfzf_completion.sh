@@ -28,6 +28,20 @@ _yayfzf_complete() {
         rose-pine-dawn
         onedark
         kanagawa
+        github-dark
+        github-light
+        monokai
+        material-dark
+        material-light
+        ayu-dark
+        everforest-dark
+        everforest-light
+        iceberg
+        papercolor-light
+        papercolor-dark
+        doom-one
+        nightfox
+        carbonfox
     )
 
     sort_by_options=(

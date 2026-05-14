@@ -263,7 +263,7 @@ yayfzf --show-config
 
 | Option | Description | Default | Values |
 | ------ | ----------- | ------- | ------ |
-| `THEME` | Built-in color theme | `default` | `default`, `light`, `tokyo-night`, `neon`, `catppuccin-mocha`, `catppuccin-latte`, `dracula`, `gruvbox-dark`, `gruvbox-light`, `nord`, `solarized-dark`, `solarized-light`, `rose-pine`, `rose-pine-moon`, `rose-pine-dawn`, `onedark`, `kanagawa` |
+| `THEME` | Built-in color theme | `default` | Show available themes: `yayfzf --list-themes` |
 | `SORT_BY` | Package search sort order | `popularity` | `popularity`, `votes`, `last_updated` |
 | `PREVIEW_WINDOW` | fzf package preview window layout and size | `right:60%:wrap` | Any valid `fzf --preview-window` value |
 | `LAYOUT` | fzf layout | `reverse` | `default`, `reverse` |
@@ -278,9 +278,12 @@ yayfzf --show-config
 Example configuration:
 
 ```bash
-# Theme: default, light, tokyo-night, neon, catppuccin-mocha, catppuccin-latte,
-# dracula, gruvbox-dark, gruvbox-light, nord, solarized-dark, solarized-light,
-# rose-pine, rose-pine-moon, rose-pine-dawn, onedark, kanagawa
+# Theme
+# Show available themes:
+#   yayfzf --list-themes
+#
+# Interactively select a theme:
+#   yayfzf --preview-themes
 THEME="default"
 
 # Package sort order: popularity, votes, last_updated
