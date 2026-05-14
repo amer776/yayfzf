@@ -643,7 +643,8 @@ preview_themes() {
         --border="${BORDER}" \
         --layout="${LAYOUT}" \
         --cycle \
-        --preview-window='right:50%:wrap' \
+        --style=full \
+        --preview-window='up:10%:wrap' \
         --preview='
           printf "Theme: %s\n\n" "{}"
           printf "Press ENTER to launch yayfzf with this theme.\n"
