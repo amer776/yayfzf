@@ -609,11 +609,9 @@ show_author() {
 show_themes() {
     local theme_name
 
-    printf '%bAvailable themes%b:\n' "${C_GREEN}" "${C_RESET}"
-
     # Associative arrays do not preserve order, so sort the theme names.
     while IFS= read -r theme_name; do
-        printf '%b%s%b\n' "${C_YELLOW}" "${theme_name}" "${C_RESET}"
+        printf '%s\n' "${theme_name}"
     done < <(printf '%s\n' "${!BUILTIN_THEMES[@]}" | sort)
 }
 
