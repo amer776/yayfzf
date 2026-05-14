@@ -482,8 +482,11 @@ ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
   ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
       ${C_WHITE}Show example configuration file content${C_RESET}
 
-  ${C_YELLOW}--sort-by${C_RESET}
+  ${C_YELLOW}--sort-by${C_RESET} ${C_ITALIC}${C_PURPLE}[sort option]${C_RESET}
       ${C_WHITE}Set package sort order${C_RESET}
+
+  ${C_YELLOW}--no-preview${C_RESET}
+      ${C_WHITE}Disable preview window${C_RESET}
 
   ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
       ${C_WHITE}Show verbose output${C_RESET}
@@ -736,6 +739,10 @@ parse_args() {
         [[ -n "${2:-}" ]] || die "Missing value for ${1}"
         SORT_BY="${2}"
         shift 2
+        ;;
+      --no-preview)
+        ENABLE_PREVIEW=false
+        shift
         ;;
       -v|--verbose)
         export VERBOSE=true

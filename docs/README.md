@@ -129,6 +129,7 @@ yayfzf
 | `-i`, `--init-config` | Install example configuration file |
 | `-s`, `--show-config` | Show example configuration file content |
 | `--sort-order` | Set package sort order |
+| `--no-preview` | Disable preview window |
 | `-v`, `--verbose` | Show verbose output |
 | `-h` | Show short help |
 | `--help` | Show full help |

@@ -40,6 +40,7 @@ _yayfzf() {
     '(-i --init-config)'{-i,--init-config}'[Install example configuration file]'
     '(-s --show-config)'{-s,--show-config}'[Show example configuration file content]'
     '--sort-by[Package sort order]:sort-by:->sort_by_options'
+    '--no-preview[Disable preview window]'
     '(-t --theme)'{-t,--theme}'[Select built-in theme]:theme:->theme_options'
     '(-l --list-themes)'{-l,--list-themes}'[Show list of built-in themes]'
     '(-v --verbose)'{-v,--verbose}'[Show verbose output]'
