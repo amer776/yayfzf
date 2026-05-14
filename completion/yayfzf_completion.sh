@@ -3,14 +3,14 @@
 # yayfzf - bash completion
 
 _yayfzf_complete() {
-    local cur prev words cword
-    local -a themes opts long_opts short_opts
+    local cur prev cword
+    local -a theme_options sort_by_options opts long_opts short_opts
 
     _init_completion || return
 
     COMPREPLY=()
 
-    themes=(
+    theme_options=(
         default
         light
         tokyo-night
@@ -30,12 +30,20 @@ _yayfzf_complete() {
         kanagawa
     )
 
+    sort_by_options=(
+      popularity
+      votes
+      last_updated
+    )
+
     long_opts=(
         --help
         --help-man
         --keybindings
         --init-config
         --show-config
+        --sort-by
+        --no-preview
         --theme
         --list-themes
         --verbose
@@ -61,22 +69,18 @@ _yayfzf_complete() {
     # Complete theme names after: yayfzf -t <TAB>
     case "${prev}" in
         -t|--theme)
-            mapfile -t COMPREPLY < <(compgen -W "${themes[*]}" -- "${cur}")
+            mapfile -t COMPREPLY < <(compgen -W "${theme_options[*]}" -- "${cur}")
             return 0
             ;;
     esac
 
-    # Complete theme names after: yayfzf --theme=<TAB>
-    if [[ ${cur} == --theme=* ]]; then
-        local theme_prefix
-        theme_prefix="${cur#--theme=}"
-
-        mapfile -t COMPREPLY < <(compgen -W "${themes[*]}" -- "${theme_prefix}")
-
-        # Add the --theme= prefix back onto each completion result.
-        COMPREPLY=("${COMPREPLY[@]/#/--theme=}")
-        return 0
-    fi
+    # Complete theme names after: yayfzf --sort-by <TAB>
+    case "${prev}" in
+        --sort-by)
+            mapfile -t COMPREPLY < <(compgen -W "${sort_by_options[*]}" -- "${cur}")
+            return 0
+            ;;
+    esac
 
     # Complete long options.
     if [[ ${cur} == --* ]]; then
@@ -98,7 +102,7 @@ _yayfzf_complete() {
 
     # After any recognized no-argument option, complete nothing.
     case "${prev}" in
-        -h|--help|--help-man|-k|--keybindings|-i|--init-config|-s|--show-config|-l|--list-themes|-v|--verbose|-V|--version)
+        -h|--help|--help-man|-k|--keybindings|-i|--init-config|-s|--show-config|--sort-by|--no-preview|-l|--list-themes|-v|--verbose|-V|--version)
             return 0
             ;;
     esac

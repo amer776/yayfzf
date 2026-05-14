@@ -17,7 +17,7 @@ readonly SCRIPT_NAME="${0##*/}"
 readonly SCRIPT_DESCRIPTION="Fullscreen interactive AUR / repo package manager using yay + fzf"
 readonly SCRIPT_AUTHOR="ConnerWill"
 readonly SCRIPT_AUTHOR_URL="https://github.com/ConnerWill"
-readonly VERSION="2.0.17"
+readonly VERSION="2.0.18"
 
 #######################################
 # Config locations (precedence order)
@@ -468,7 +468,7 @@ ${C_BLUE}${C_BOLD}USAGE${C_RESET}
 ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
   ${C_YELLOW}-t${C_RESET}, ${C_YELLOW}--theme${C_RESET} ${C_ITALIC}${C_PURPLE}[theme]${C_RESET}
-      ${C_WHITE}Select built-in theme${C_RESET}
+      ${C_WHITE}Set built-in theme${C_RESET}
 
   ${C_YELLOW}-l${C_RESET}, ${C_YELLOW}--list-themes${C_RESET}
       ${C_WHITE}Show list of built-in themes${C_RESET}
@@ -481,6 +481,12 @@ ${C_BLUE}${C_BOLD}OPTIONS${C_RESET}
 
   ${C_YELLOW}-s${C_RESET}, ${C_YELLOW}--show-config${C_RESET}
       ${C_WHITE}Show example configuration file content${C_RESET}
+
+  ${C_YELLOW}--sort-by${C_RESET} ${C_ITALIC}${C_PURPLE}[sort option]${C_RESET}
+      ${C_WHITE}Set package sort order${C_RESET}
+
+  ${C_YELLOW}--no-preview${C_RESET}
+      ${C_WHITE}Disable preview window${C_RESET}
 
   ${C_YELLOW}-v${C_RESET}, ${C_YELLOW}--verbose${C_RESET}
       ${C_WHITE}Show verbose output${C_RESET}
@@ -702,35 +708,85 @@ show_example_config() {
 #######################################
 # Command line argument parsing
 #######################################
-SEARCH_QUERY=""
-CONFIG_INIT=false
-if [[ -n "${VERBOSE}" && "${VERBOSE}" != false ]]; then
-  export VERBOSE
-fi
+parse_args() {
+  SEARCH_QUERY=""
+  CONFIG_INIT=false
 
-while [[ $# -gt 0 ]]; do
-  case "${1}" in
-    -t|--them*)       THEME="${2}";                               shift 2 ;;
-    -l|--list-themes) show_themes;                                exit 0  ;;
-    -k|--key*)        show_keybindings;                           exit 0  ;;
-    -i|--init-c*)     CONFIG_INIT=true;                           shift   ;;
-    -s|--show-c*)     show_example_config;                        exit 0  ;;
-    -v|--verb*)       export VERBOSE=true;                        shift   ;;
-    -h)               show_help;                                  exit 0  ;;
-    --help)           show_help_full;                             exit 0  ;;
-    --help-man)       show_help_man;                              exit 0  ;;
-    -V|--vers*)       show_version;                               exit 0  ;;
-    -*)               die "Unknown option: '${1}'. See help for options"  ;;
-    *)                SEARCH_QUERY+="${SEARCH_QUERY:+ }${1}";     shift   ;;
-  esac
-done
+  while [[ $# -gt 0 ]]; do
+    case "${1}" in
+      -t|--theme)
+        [[ -n "${2:-}" ]] || die "Missing value for ${1}"
+        THEME="${2}"
+        shift 2
+        ;;
+      -l|--list-themes)
+        show_themes
+        exit 0
+        ;;
+      -k|--keybindings)
+        show_keybindings
+        exit 0
+        ;;
+      -i|--init-config)
+        CONFIG_INIT=true
+        shift
+        ;;
+      -s|--show-config)
+        show_example_config
+        exit 0
+        ;;
+      --sort-by)
+        [[ -n "${2:-}" ]] || die "Missing value for ${1}"
+        SORT_BY="${2}"
+        shift 2
+        ;;
+      --no-preview)
+        ENABLE_PREVIEW=false
+        shift
+        ;;
+      -v|--verbose)
+        export VERBOSE=true
+        shift
+        ;;
+      -h)
+        show_help
+        exit 0
+        ;;
+      --help)
+        show_help_full
+        exit 0
+        ;;
+      --help-man)
+        show_help_man
+        exit 0
+        ;;
+      -V|--version)
+        show_version
+        exit 0
+        ;;
+      --)
+        shift
+        SEARCH_QUERY+="${SEARCH_QUERY:+ }${*}"
+        break
+        ;;
+      -*)
+        die "Unknown option: '${1}'. See help for options"
+        ;;
+      *)
+        SEARCH_QUERY+="${SEARCH_QUERY:+ }${1}"
+        shift
+        ;;
+    esac
+  done
+}
 
 #######################################
 # Init
 #######################################
 load_config
+parse_args "${@}"
 resolve_theme
-require_cmd yay fzf
+require_cmd yay fzf awk sed tr tput
 
 if [[ "${CONFIG_INIT}" == true ]]; then
   install_example_config

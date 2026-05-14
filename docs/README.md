@@ -123,11 +123,13 @@ yayfzf
 
 | Option | Description |
 | ------ |------------ |
-| `-t`, `--theme` | Select built-in theme |
+| `-t`, `--theme` | Set built-in theme |
 | `-l`, `--list-themes` | Show list of built-in themes |
 | `-k`, `--keybindings` | Show keybindings and exit |
 | `-i`, `--init-config` | Install example configuration file |
 | `-s`, `--show-config` | Show example configuration file content |
+| `--sort-order` | Set package sort order |
+| `--no-preview` | Disable preview window |
 | `-v`, `--verbose` | Show verbose output |
 | `-h` | Show short help |
 | `--help` | Show full help |
@@ -175,11 +177,12 @@ yayfzf
 
 | Option | Description | Default |
 | ------ | ----------- | ------- |
-| `THEME` | Color theme | `default` *(options: default, light, tokyo-night, neon, catppuccin-mocha, catppuccin-latte, dracula, gruvbox-dark, gruvbox-light, nord, solarized-dark, solarized-light, rose-pine, rose-pine-moon, rose-pine-dawn, onedark, kanagawa)* |
+| `THEME` | Color theme | `default` *(options: `default`, `light`, `tokyo-night`, `neon`, `catppuccin-mocha`, `catppuccin-latte`, `dracula`, `gruvbox-dark`, `gruvbox-light`, `nord`, `solarized-dark`, `solarized-light`, `rose-pine`, `rose-pine-moon`, `rose-pine-dawn`, `onedark`, `kanagawa`)* |
 | `PREVIEW_WINDOW` | fzf preview window layout and size | `right:60%:wrap` |
 | `ENABLE_PREVIEW` | Show preview window | `true` |
-| `LAYOUT` | fzf layout | `reverse` *(options: default, reverse)* |
-| `BORDER` | fzf border style | `rounded` *(options: default, rounded)* |
+| `SORT_BY` | Package sort order | `popularity` *(options: `popularity`, `votes`, `last_updated`)* |
+| `LAYOUT` | fzf layout | `reverse` *(options: `default`, `reverse`)* |
+| `BORDER` | fzf border style | `rounded` *(options: `default`, `rounded`)* |
 | `PROMPT` | Prompt string for fzf | `"yayfzf> "` |
 | `VERBOSE` | Enable verbose logging | `false` |
 | `YAYFZF_PAGER` | Pager for help/config/keybindings | `${PAGER:-less}` |
