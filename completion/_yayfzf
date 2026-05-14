@@ -1,13 +1,13 @@
 #compdef yayfzf
 
 _yayfzf() {
-  local -a opts themes
+  local -a opts theme_options sort_by_options
   local curcontext="${curcontext}" state line
   local ret=1
 
   typeset -A opt_args
 
-  themes=(
+  theme_options=(
     default
     light
     tokyo-night
@@ -27,13 +27,20 @@ _yayfzf() {
     kanagawa
   )
 
+  sort_by_options=(
+    popularity
+    votes
+    last_updated
+  )
+
   opts=(
     '(-h --help)'{-h,--help}'[Show help]'
     '--help-man[Show manpage help]'
     '(-k --keybindings)'{-k,--keybindings}'[Show keybindings]'
     '(-i --init-config)'{-i,--init-config}'[Install example configuration file]'
     '(-s --show-config)'{-s,--show-config}'[Show example configuration file content]'
-    '(-t --theme)'{-t,--theme}'[Select built-in theme]:theme:->themes'
+    '--sort-by[Package sort order]:sort-by:->sort_by_options'
+    '(-t --theme)'{-t,--theme}'[Select built-in theme]:theme:->theme_options'
     '(-l --list-themes)'{-l,--list-themes}'[Show list of built-in themes]'
     '(-v --verbose)'{-v,--verbose}'[Show verbose output]'
     '(-V --version)'{-V,--version}'[Show version]'
@@ -44,8 +51,12 @@ _yayfzf() {
     '*: :( )' && return 0
 
   case "${state}" in
-    themes)
-      _values 'yayfzf theme' "${themes[@]}" && ret=0
+    theme_options)
+      _values 'yayfzf theme' "${theme_options[@]}" && ret=0
+      ;;
+
+    sort_by_options)
+      _values 'yayfzf sort order' "${sort_by_options[@]}" && ret=0
       ;;
   esac
 
