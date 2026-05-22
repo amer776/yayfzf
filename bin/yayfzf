@@ -22,10 +22,10 @@ readonly VERSION="2.0.20"
 #######################################
 # Config locations (precedence order)
 #######################################
-readonly XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/yayfzf"
+readonly XDG_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/${SCRIPT_NAME}"
 readonly CONFIG_PATHS=(
-  "${XDG_CONFIG_DIR}/yayfzf.conf"
-  "${HOME}/.yayfzf.conf"
+  "${XDG_CONFIG_DIR}/${SCRIPT_NAME}.conf"
+  "${HOME}/.${SCRIPT_NAME}.conf"
 )
 
 #######################################
@@ -945,15 +945,15 @@ show_help_full() {
 
 example_config() {
   cat <<EOF
-# yayfzf configuration file (example)
+# ${SCRIPT_NAME} configuration file (example)
 # Override defaults here
 
 # Theme
 # Show available themes:
-#   yayfzf --list-themes
+#   ${SCRIPT_NAME} --list-themes
 #
 # Interactively select a theme:
-#   yayfzf --preview-themes
+#   ${SCRIPT_NAME} --preview-themes
 THEME="${THEME:-default}"
 
 # Package sort order: popularity, votes, last_updated
@@ -980,7 +980,7 @@ VERBOSE=${VERBOSE:-false}
 # Pager (less, bat, etc.)
 YAYFZF_PAGER="${PAGER:-less}"
 
-# Close yayfzf with 'ctrl-c' keypress
+# Close ${SCRIPT_NAME} with 'ctrl-c' keypress
 CTRL_C_CLOSE=${CTRL_C_CLOSE:-true}
 
 # Disable color output
@@ -992,7 +992,7 @@ EOF
 
 
 install_example_config() {
-  local cfg_file="${XDG_CONFIG_DIR}/yayfzf.conf"
+  local cfg_file="${XDG_CONFIG_DIR}/${SCRIPT_NAME}.conf"
 
   mkdir -p "$(dirname "${cfg_file}")"
   if [[ -f "${cfg_file}" ]]; then
@@ -1005,7 +1005,7 @@ install_example_config() {
 }
 
 show_example_config() {
-  local cfg_file="${XDG_CONFIG_DIR}/yayfzf.conf"
+  local cfg_file="${XDG_CONFIG_DIR}/${SCRIPT_NAME}.conf"
   if [[ -f "${cfg_file}" ]]; then
     "${YAYFZF_PAGER}" "${cfg_file}"
   else

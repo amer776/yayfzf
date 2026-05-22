@@ -89,7 +89,7 @@ _yayfzf_complete() {
             ;;
     esac
 
-    # Complete theme names after: yayfzf --sort-by <TAB>
+    # Complete sort-by options  after: yayfzf --sort-by <TAB>
     case "${prev}" in
         --sort-by)
             mapfile -t COMPREPLY < <(compgen -W "${sort_by_options[*]}" -- "${cur}")
