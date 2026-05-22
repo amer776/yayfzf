@@ -48,18 +48,18 @@ _yayfzf() {
   )
 
   opts=(
-    '(-h --help)'{-h,--help}'[Show help]'
-    '--help-man[Show manpage help]'
+    '(-h --help --help-man -V --version)'{-h,--help}'[Show help]'
+    '(-h --help --help-man -V --version)--help-man[Show manpage help]'
     '(-k --keybindings)'{-k,--keybindings}'[Show keybindings]'
     '(-i --init-config)'{-i,--init-config}'[Install example configuration file]'
     '(-s --show-config)'{-s,--show-config}'[Show example configuration file content]'
     '--sort-by[Package sort order]:sort-by:->sort_by_options'
     '--no-preview[Disable preview window]'
     '(-t --theme)'{-t,--theme}'[Select built-in theme]:theme:->theme_options'
-    '(--preview-themes[Interactively preview and select a built-in theme]'
-    '(-l --list-themes)'{-l,--list-themes}'[Show list of built-in themes]'
+    '(-l --list-themes --preview-themes)--preview-themes[Interactively preview and select a built-in theme]'
+    '(--preview-themes -l --list-themes)'{-l,--list-themes}'[Show list of built-in themes]'
     '(-v --verbose)'{-v,--verbose}'[Show verbose output]'
-    '(-V --version)'{-V,--version}'[Show version]'
+    '(-h --help --help-man -V --version)'{-V,--version}'[Show version]'
   )
 
   _arguments -C \
